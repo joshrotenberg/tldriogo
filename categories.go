@@ -5,6 +5,7 @@ type Category struct {
 	Slug string `json:"slug"`
 }
 
+// Categories returns a slice of TL;DR categories.
 func (t *TldrIo) Categories() (*[]Category, error) {
 
 	var categories []Category

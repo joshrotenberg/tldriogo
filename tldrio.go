@@ -1,3 +1,4 @@
+// Package tldrio provides a simple wrapper around the tldr.io API.
 package tldrio
 
 import (
@@ -16,6 +17,7 @@ type TldrIo struct {
 	httpClient *http.Client
 }
 
+// NewTldrIo creates a new handle for making API calls.
 func NewTldrIo() *TldrIo {
 	client := &http.Client{}
 	return &TldrIo{httpClient: client}
