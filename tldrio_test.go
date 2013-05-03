@@ -4,16 +4,9 @@ import (
 	"testing"
 )
 
-func TestTldr(t *testing.T) {
-	var tldr *Tldr
-	tldr = NewTldr()
-	t.Logf("%+v", tldr)
+func TestTldrIo(t *testing.T) {
+	var tldrio *TldrIo
+	tldrio = NewTldrIo()
+	t.Logf("%+v", tldrio)
 }
 
-func TestCategories(t *testing.T) {
-	var tldr *Tldr
-	tldr = NewTldr()
-
-	tldr.Categories()
-
-}

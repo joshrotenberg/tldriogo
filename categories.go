@@ -2,10 +2,12 @@ package tldrio
 
 type Category struct {
 	Name string `json:"name"`
+	Slug string `json:"slug"`
 }
 
-func (t *Tldr) Categories() { (categories []Category, error) {
+func (t *TldrIo) Categories() (*[]Category, error) {
 
-	var r interface{}
-	callApi(t, "GET", "categories", "", &r)
+	var categories []Category
+	callApi(t, "GET", "categories", "", &categories)
+	return &categories, nil
 }

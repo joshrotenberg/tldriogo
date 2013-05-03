@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	//	"io"
 	"io/ioutil"
 	"net/http"
 )
@@ -13,17 +12,17 @@ const (
 	TldrApiUrl = "https://api.tldr.io"
 )
 
-type Tldr struct {
+type TldrIo struct {
 	httpClient *http.Client
 }
 
-func NewTldr() *Tldr {
+func NewTldrIo() *TldrIo {
 	client := &http.Client{}
-	return &Tldr{httpClient: client}
+	return &TldrIo{httpClient: client}
 
 }
 
-func callApi(t *Tldr, method, uri, params string, result interface{}) error {
+func callApi(t *TldrIo, method, uri, params string, result interface{}) error {
 	url := fmt.Sprintf("%s/%s?%s", TldrApiUrl, uri, params)
 	request, err := http.NewRequest(method, url, nil)
 	if err != nil {
@@ -38,6 +37,7 @@ func callApi(t *Tldr, method, uri, params string, result interface{}) error {
 
 	if response.StatusCode != http.StatusOK {
 		err = errors.New(fmt.Sprintf("API responded with %d", response.StatusCode))
+		return err
 	}
 
 	if response.Header.Get("Content-Type") == "application/json; charset=utf-8" {
