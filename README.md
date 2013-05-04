@@ -8,7 +8,7 @@ tldriogo is a client library for the [tl;dr](http://tldr.io/) API.
 
 ## Docs
 
-``go
+```go
 
 var tldrio *TldrIo
 tldrio = NewTldrIo()
