@@ -15,7 +15,6 @@ func TestLatest(t *testing.T) {
 	if len((*latest)) != 1 {
 		t.Error("didn't get a tl;dr")
 	}
-
 }
 
 func TestSearch(t *testing.T) {
