@@ -12,7 +12,9 @@ func TestCategories(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	} else {
-		t.Logf("%+v", categories)
+		if len(*categories) == 0 {
+			t.Error("no categories found")
+		}
 	}
 
 }

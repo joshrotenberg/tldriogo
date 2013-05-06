@@ -30,11 +30,13 @@ func (t *TldrIo) User(user string) (*User, error) {
 }
 
 // UserTldrs gets the TL;DRs created by the given user.
-func (t *TldrIo) UserTldrs(user string) (*[]Tldr, error) {
-	var tldrs []Tldr
-	err := callApi(t, "GET", fmt.Sprintf("users/%s/tldrsCreated", user), "", nil, &tldrs)
+func (t *TldrIo) UserTldrs(user string) (*interface{}, error) {
+//func (t *TldrIo) UserTldrs(user string) (*[]Tldr, error) {
+	//var tldrs []Tldr
+	var i interface{}
+	err := callApi(t, "GET", fmt.Sprintf("users/%s/tldrsCreated", user), "", nil, &i) //tldrs)
 	if err != nil {
 		return nil, err
 	}
-	return &tldrs, nil
+	return &i, nil
 }

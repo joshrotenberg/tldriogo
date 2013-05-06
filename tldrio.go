@@ -26,7 +26,6 @@ func NewTldrIo() *TldrIo {
 }
 
 func callApi(t *TldrIo, method, uri, params string, postData []byte, result interface{}) error {
-	fmt.Println(method)
 	url := fmt.Sprintf("%s/%s?%s", TldrApiUrl, uri, params)
 	var (
 		err     error
@@ -45,11 +44,12 @@ func callApi(t *TldrIo, method, uri, params string, postData []byte, result inte
 		}
 		request.ContentLength = int64(len(postData))
 		request.Header.Set("Content-Type", "application/json")
-		fmt.Println(string(postData))
 	default:
 		err = errors.New(fmt.Sprintf("Method %s not supported", method))
 		return err
 	}
+
+	request.Header.Add("User-Agent", "tldriogo/0.1")
 
 	response, err := t.httpClient.Do(request)
 	defer response.Body.Close()
@@ -68,7 +68,6 @@ func callApi(t *TldrIo, method, uri, params string, postData []byte, result inte
 		if err != nil {
 			return err
 		} else {
-			fmt.Println(string(js))
 			err = json.Unmarshal(js, &result)
 			if err != nil {
 				return err
