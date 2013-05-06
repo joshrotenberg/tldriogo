@@ -46,3 +46,16 @@ func TestSearchNotThere(t *testing.T) {
 		t.Error("expected no results but got one ...")
 	}
 }
+
+func TestSearchBatch(t *testing.T) {
+	var tldrio *TldrIo
+	tldrio = NewTldrIo()
+
+	results, err := tldrio.SearchBatch("http://42floors.com/blog/yc-without-being-in-yc",
+		"http://jsonapi.org")
+	if err != nil {
+		t.Error(err)
+	} else {
+		t.Logf("%+v", results)
+	}
+}

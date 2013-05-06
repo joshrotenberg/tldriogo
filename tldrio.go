@@ -2,6 +2,7 @@
 package tldrio
 
 import (
+	"bytes"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -24,10 +25,29 @@ func NewTldrIo() *TldrIo {
 
 }
 
-func callApi(t *TldrIo, method, uri, params string, result interface{}) error {
+func callApi(t *TldrIo, method, uri, params string, postData []byte, result interface{}) error {
+	fmt.Println(method)
 	url := fmt.Sprintf("%s/%s?%s", TldrApiUrl, uri, params)
-	request, err := http.NewRequest(method, url, nil)
-	if err != nil {
+	var (
+		err     error
+		request *http.Request
+	)
+	switch method {
+	case "GET":
+		request, err = http.NewRequest(method, url, nil)
+		if err != nil {
+			return err
+		}
+	case "POST":
+		request, err = http.NewRequest(method, url, bytes.NewReader(postData))
+		if err != nil {
+			return err
+		}
+		request.ContentLength = int64(len(postData))
+		request.Header.Set("Content-Type", "application/json")
+		fmt.Println(string(postData))
+	default:
+		err = errors.New(fmt.Sprintf("Method %s not supported", method))
 		return err
 	}
 
@@ -48,6 +68,7 @@ func callApi(t *TldrIo, method, uri, params string, result interface{}) error {
 		if err != nil {
 			return err
 		} else {
+			fmt.Println(string(js))
 			err = json.Unmarshal(js, &result)
 			if err != nil {
 				return err
@@ -56,4 +77,3 @@ func callApi(t *TldrIo, method, uri, params string, result interface{}) error {
 	}
 	return nil
 }
-

@@ -9,6 +9,6 @@ type Category struct {
 func (t *TldrIo) Categories() (*[]Category, error) {
 
 	var categories []Category
-	callApi(t, "GET", "categories", "", &categories)
+	callApi(t, "GET", "categories", "", nil, &categories)
 	return &categories, nil
 }

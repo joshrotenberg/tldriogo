@@ -1,6 +1,7 @@
 package tldrio
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/url"
 	"time"
@@ -60,7 +61,7 @@ type Tldr struct {
 	ThankedBy            []string             `json:"thankedBy"`
 }
 
-// Get the latest TL;DRs
+// Latest gets the latest TL;DRs.
 func (t *TldrIo) Latest(number int, category string) (*[]Tldr, error) {
 	var tldrs []Tldr
 	v := url.Values{}
@@ -69,7 +70,7 @@ func (t *TldrIo) Latest(number int, category string) (*[]Tldr, error) {
 		v.Add("category", category)
 	}
 
-	err := callApi(t, "GET", fmt.Sprintf("tldrs/latest/%d", number), v.Encode(), &tldrs)
+	err := callApi(t, "GET", fmt.Sprintf("tldrs/latest/%d", number), v.Encode(), nil, &tldrs)
 	if err != nil {
 		return nil, err
 	}
@@ -83,7 +84,7 @@ func (t *TldrIo) Search(u string) (*Tldr, error) {
 
 	v.Set("url", u)
 
-	err := callApi(t, "GET", "tldrs/search", v.Encode(), &tldr)
+	err := callApi(t, "GET", "tldrs/search", v.Encode(), nil, &tldr)
 	if err != nil {
 		return nil, err
 	}
@@ -91,5 +92,20 @@ func (t *TldrIo) Search(u string) (*Tldr, error) {
 
 }
 
+// SearchBatch searches for multiple TL;DRs.
+func (t *TldrIo) SearchBatch(urls ...string) (*[]Tldr, error) {
+	b, err := json.Marshal(struct {
+		Batch []string `json:"batch"`
+	}{ urls })
+	if err != nil {
+		return nil, err
+	}
 
+	data := struct { Tldrs []Tldr `json:"tldrs"` }{}
 
+	err = callApi(t, "POST", "tldrs/searchBatch", "", b, &data)
+	if err != nil {
+		return nil, err
+	}
+	return &data.Tldrs, nil
+}
