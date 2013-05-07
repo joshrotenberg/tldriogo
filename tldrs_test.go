@@ -54,9 +54,19 @@ func TestSearch(t *testing.T) {
 }
 
 func ExampleTldrIo_Search() {
+	var tldrio *TldrIo
+	tldrio = NewTldrIo()
+
+	result, err := tldrio.Search("http://jsonapi.org")
+	if err != nil {
+		fmt.Println("search didn't return any results")
+	} else {
+		fmt.Printf("search returned a tl;dr with the title '%s'\n", result.Title)
+	}
+	// Output:
+	// search returned a tl;dr with the title 'JSON API'
 
 }
-
 
 func TestSearchNotThere(t *testing.T) {
 	var tldrio *TldrIo
@@ -81,4 +91,19 @@ func TestSearchBatch(t *testing.T) {
 			t.Error("batch search didn't return expected results")
 		}
 	}
+}
+
+func ExampleTldrIo_SearchBatch() {
+	var tldrio *TldrIo
+	tldrio = NewTldrIo()
+
+	results, err := tldrio.SearchBatch("http://42floors.com/blog/yc-without-being-in-yc",
+		"http://jsonapi.org")
+	if err != nil {
+		fmt.Println("search batch didn't return any results")
+	} else {
+		fmt.Printf("search batch found 2 results: %t\n", len(*results) == 2)
+	}
+	// Output:
+	// search batch found 2 results: true
 }
