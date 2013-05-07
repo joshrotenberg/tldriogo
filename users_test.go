@@ -30,7 +30,7 @@ func TestUser(t *testing.T) {
 func ExampleTldrIo_User() {
 	var tldrio *TldrIo
 	tldrio = NewTldrIo()
-	username := "joshrotenberg"
+	username := "Louis"
 
 	user, err := tldrio.User(username)
 	if err != nil {
@@ -39,7 +39,7 @@ func ExampleTldrIo_User() {
 		fmt.Printf("%s was created at %s\n", user.Username, user.CreatedAt)
 	}
 	// Output:
-	// JoshRotenberg was created at 2013-04-12 17:16:10.363 +0000 UTC
+	// Louis was created at 2012-09-05 08:39:24 +0000 UTC
 }
 
 func TestUserTldrs(t *testing.T) {
@@ -62,4 +62,21 @@ func TestUserTldrs(t *testing.T) {
 		}
 
 	}
+}
+
+func ExampleTldrIo_UserTldrs() {
+	var tldrio *TldrIo
+	tldrio = NewTldrIo()
+
+	username := "Louis"
+
+	tldrs, err := tldrio.UserTldrs(username)
+	if err != nil {
+		fmt.Printf("user %s doesn't exist\n", username)
+	} else {
+		fmt.Printf("user %s has more than one tldr: %t\n", username, len(*tldrs) > 1)
+	}
+	// Output:
+	// user Louis has more than one tldr: true
+
 }

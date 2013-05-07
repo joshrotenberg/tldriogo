@@ -9,4 +9,3 @@ func TestTldrIo(t *testing.T) {
 	tldrio = NewTldrIo()
 	t.Logf("%+v", tldrio)
 }
-

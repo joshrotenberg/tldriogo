@@ -57,7 +57,7 @@ func TestSearchBatch(t *testing.T) {
 		t.Error(err)
 	} else {
 		if len(*results) == 0 {
-			t.Error("batch search didn't return expected results")		
+			t.Error("batch search didn't return expected results")
 		}
 	}
 }
