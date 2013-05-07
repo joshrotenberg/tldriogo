@@ -2,6 +2,8 @@
 
 A Go library for the tldr.io API.
 
+[![Build Status](https://travis-ci.org/joshrotenberg/tldriogo.png?branch=master)](https://travis-ci.org/joshrotenberg/tldriogo)
+
 ## Overview
 
 tldriogo is a client library for the [tl;dr](http://tldr.io/) API.
