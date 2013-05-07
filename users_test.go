@@ -18,6 +18,7 @@ func TestUser(t *testing.T) {
 		if err != nil {
 			t.Error(err)
 		} else {
+			// TODO: validate all fields
 			if username != user.Username {
 				t.Error("users don't match")
 			}
@@ -26,7 +27,7 @@ func TestUser(t *testing.T) {
 	}
 }
 
-func ExampleUser() {
+func ExampleTldrIo_User() {
 	var tldrio *TldrIo
 	tldrio = NewTldrIo()
 	username := "joshrotenberg"
@@ -37,7 +38,8 @@ func ExampleUser() {
 	} else {
 		fmt.Printf("%s was created at %s\n", user.Username, user.CreatedAt)
 	}
-
+	// Output:
+	// JoshRotenberg was created at 2013-04-12 17:16:10.363 +0000 UTC
 }
 
 func TestUserTldrs(t *testing.T) {
@@ -53,6 +55,7 @@ func TestUserTldrs(t *testing.T) {
 		if err != nil {
 			t.Error(err)
 		} else {
+			// TODO: validate all fields
 			if len(*tldrs) == 0 {
 				t.Errorf("expected >0 tl;drs by user %s", username)
 			}
