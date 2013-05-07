@@ -6,45 +6,45 @@ import (
 )
 
 type Gravatar struct {
-	Url string `json:"url"`
+	Url string
 }
 
 // User contains information about a TL;DR user.
 type User struct {
-	Username      string    `json:"username"`
-	TwitterHandle string    `json:"twitterHandle"`
-	Bio           string    `json:"bio"`
-	Gravatar      Gravatar  `json:"gravatar"`
-	CreatedAt     time.Time `json:"createdAt"`
-	LastActive    time.Time `json:"lastActive"`
+	Username      string
+	TwitterHandle string
+	Bio           string
+	Gravatar      Gravatar
+	CreatedAt     time.Time
+	LastActive    time.Time
 }
 
 // Struct reprsentation of a single TL;DR
 // Note that this data structure is almost identical to Tldr but because of a small inconsistency in the API,
 // Creators in the /users/<username>/tldrsCreated call are just a string ID rather than an object.
 type UserTldr struct {
-	Title                string               `json:"title"`
-	Slug                 string               `json:"slug"`
-	Permalink            string               `json:"permalink"`
-	SummaryBullets       []string             `json:"summaryBullets"`
-	ReadCount            int                  `json:"readCount"`
-	OriginalUrl          string               `json:"originalUrl"`
-	PossibleUrls         []string             `json:"possibleUrls"`
-	Creator              string               `json:"creator"`
-	ImageUrl             string               `json:"imageUrl"`
-	CreatedAt            time.Time            `json:"createdAt"`
-	UpdatedAt            time.Time            `json:"updatedAt"`
-	Moderated            bool                 `json:"moderated"`
-	DistributionChannels DistributionChannels `json:"distributionChannels"`
-	Anonymous            bool                 `json:"anonymous"`
-	WordCount            int                  `json:"wordCount"`
-	ArticleWordCount     int                  `json:"articleWordCount"`
-	TimeSaved            string               `json:"timeSaved"`
-	Language             Language             `json:"language"`
-	Domain               Domain               `json:"domain"`
-	Categories           []Category           `json:"categories"`
-	Editors              []string             `json:"editors"`
-	ThankedBy            []string             `json:"thankedBy"`
+	Title                string
+	Slug                 string
+	Permalink            string
+	SummaryBullets       []string
+	ReadCount            int
+	OriginalUrl          string
+	PossibleUrls         []string
+	Creator              string
+	ImageUrl             string
+	CreatedAt            time.Time
+	UpdatedAt            time.Time
+	Moderated            bool
+	DistributionChannels DistributionChannels
+	Anonymous            bool
+	WordCount            int
+	ArticleWordCount     int
+	TimeSaved            string
+	Language             Language
+	Domain               Domain
+	Categories           []Category
+	Editors              []string
+	ThankedBy            []string
 }
 
 // User gets public data about the given user.

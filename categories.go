@@ -1,8 +1,8 @@
 package tldrio
 
 type Category struct {
-	Name string `json:"name"`
-	Slug string `json:"slug"`
+	Name string
+	Slug string
 }
 
 // Categories returns a slice of TL;DR categories.

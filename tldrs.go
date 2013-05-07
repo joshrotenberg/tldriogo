@@ -9,56 +9,56 @@ import (
 
 // TL;DR Domain
 type Domain struct {
-	Name string `json:"name"`
-	Slug string `json:"slug"`
+	Name string
+	Slug string
 }
 
 // TL;DR language
 type Language struct {
-	Language   string  `json:"language"`
-	Confidence float64 `json:"confidence"`
+	Language   string
+	Confidence float64
 }
 
 // TL;DR distribution channels
 type DistributionChannels struct {
-	LatestTldrs        bool `json:"latestTldrs"`
-	LatestTldrsRSSFeed bool `json:"latestTldrsRSSFeed"`
+	LatestTldrs        bool
+	LatestTldrsRSSFeed bool
 }
 
 // TL;DR creator information
 type Creator struct {
-	Id                 string `json:"id"`
-	Username           string `json:"username"`
-	UsernameForDisplay string `json:"usernameForDisplay"`
-	IsAdmin            bool   `json:"isAdmin"`
-	Deleted            bool   `json:"deleted"`
-	TwitterHandle      string `json:"twitterHandle"`
+	Id                 string
+	Username           string
+	UsernameForDisplay string
+	IsAdmin            bool
+	Deleted            bool
+	TwitterHandle      string
 }
 
 // Struct reprsentation of a single TL;DR
 type Tldr struct {
-	Title                string               `json:"title"`
-	Slug                 string               `json:"slug"`
-	Permalink            string               `json:"permalink"`
-	SummaryBullets       []string             `json:"summaryBullets"`
-	ReadCount            int                  `json:"readCount"`
-	OriginalUrl          string               `json:"originalUrl"`
-	PossibleUrls         []string             `json:"possibleUrls"`
-	Creator              Creator              `json:"creator"`
-	ImageUrl             string               `json:"imageUrl"`
-	CreatedAt            time.Time            `json:"createdAt"`
-	UpdatedAt            time.Time            `json:"updatedAt"`
-	Moderated            bool                 `json:"moderated"`
-	DistributionChannels DistributionChannels `json:"distributionChannels"`
-	Anonymous            bool                 `json:"anonymous"`
-	WordCount            int                  `json:"wordCount"`
-	ArticleWordCount     int                  `json:"articleWordCount"`
-	TimeSaved            string               `json:"timeSaved"`
-	Language             Language             `json:"language"`
-	Domain               Domain               `json:"domain"`
-	Categories           []Category           `json:"categories"`
-	Editors              []Creator            `json:"editors"`
-	ThankedBy            []string             `json:"thankedBy"`
+	Title                string
+	Slug                 string
+	Permalink            string
+	SummaryBullets       []string
+	ReadCount            int
+	OriginalUrl          string
+	PossibleUrls         []string
+	Creator              Creator
+	ImageUrl             string
+	CreatedAt            time.Time
+	UpdatedAt            time.Time
+	Moderated            bool
+	DistributionChannels DistributionChannels
+	Anonymous            bool
+	WordCount            int
+	ArticleWordCount     int
+	TimeSaved            string
+	Language             Language
+	Domain               Domain
+	Categories           []Category
+	Editors              []Creator
+	ThankedBy            []string
 }
 
 // Latest gets the latest TL;DRs.
@@ -102,7 +102,7 @@ func (t *TldrIo) SearchBatch(urls ...string) (*[]Tldr, error) {
 	}
 
 	data := struct {
-		Tldrs []Tldr `json:"tldrs"`
+		Tldrs []Tldr
 	}{}
 
 	err = callApi(t, "POST", "tldrs/searchBatch", "", b, &data)
