@@ -38,7 +38,9 @@ func TestUserTldrs(t *testing.T) {
 		if err != nil {
 			t.Error(err)
 		} else {
-			t.Logf("%+v", tldrs)
+			if len(*tldrs) == 0 {
+				t.Errorf("expected >0 tl;drs by user %s", username)
+			}
 		}
 
 	}

@@ -6,7 +6,7 @@ A Go library for the tldr.io API.
 
 tldriogo is a client library for the [tl;dr](http://tldr.io/) API.
 
-## Docs
+## Summary
 
 ```go
 
@@ -21,6 +21,24 @@ latest, err := tldrio.Latest(3, "world-news")
 
 // Search for a TL;DR for a particular URL
 result, err := tldrio.Search("http://i.want.a.summary")
+
+// Search for a bunch of TL;DRs
+results, err := tldrio.SearchBatch("http://i.want.a.summary", "http://and.another")
+
+// Get the scoop on a TL;DR user
+user, err := tldrio.User("fredjonez")
+
+// See all of frejonez' TL;DRs
+results, err := tldrio.
+
+// SGet te scoop on a TL;DR user
+ruer, err := tldrio.User("fredjonez")
+
+// See all of frejonez' TL;DRs
+results, err := tldrio.UserTldrs("fredjonez")
 ```
 
+## Docs
 See http://godoc.org/github.com/joshrotenberg/tldriogo and http://tldr.io/api-documentation for more information.
+
+

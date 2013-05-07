@@ -96,12 +96,14 @@ func (t *TldrIo) Search(u string) (*Tldr, error) {
 func (t *TldrIo) SearchBatch(urls ...string) (*[]Tldr, error) {
 	b, err := json.Marshal(struct {
 		Batch []string `json:"batch"`
-	}{ urls })
+	}{urls})
 	if err != nil {
 		return nil, err
 	}
 
-	data := struct { Tldrs []Tldr `json:"tldrs"` }{}
+	data := struct {
+		Tldrs []Tldr `json:"tldrs"`
+	}{}
 
 	err = callApi(t, "POST", "tldrs/searchBatch", "", b, &data)
 	if err != nil {
