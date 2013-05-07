@@ -1,6 +1,7 @@
 package tldrio
 
 import (
+	"fmt"
 	"testing"
 )
 
@@ -23,6 +24,20 @@ func TestUser(t *testing.T) {
 		}
 
 	}
+}
+
+func ExampleUser() {
+	var tldrio *TldrIo
+	tldrio = NewTldrIo()
+	username := "joshrotenberg"
+
+	user, err := tldrio.User(username)
+	if err != nil {
+		fmt.Printf("user %s doesn't exist\n", username)
+	} else {
+		fmt.Printf("%s was created at %s\n", user.Username, user.CreatedAt)
+	}
+
 }
 
 func TestUserTldrs(t *testing.T) {
